@@ -761,6 +761,11 @@
             50% { transform: translateY(-10px); }
         }
 
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
@@ -889,6 +894,7 @@
             <ul class="nav-links">
                 <li><a href="#hero" data-i18n="nav_home">الرئيسية</a></li>
                 <li><a href="#services" data-i18n="nav_services">خدماتنا</a></li>
+                <li><a href="#deals" data-i18n="nav_deals">صفقاتنا</a></li>
                 <li><a href="#about" data-i18n="nav_about">من نحن</a></li>
                 <li><a href="#partners" data-i18n="nav_partners">الشركاء</a></li>
                 <li><a href="#contact" data-i18n="nav_contact">اتصل بنا</a></li>
@@ -912,7 +918,9 @@
     <section id="hero" class="hero">
         <div class="hero-content fade-up">
             <h1 data-i18n="hero_title">سوريانا<br><span>بوابة عالمية للتجارة</span></h1>
-            <p data-i18n="hero_subtitle">نربط الأسواق عبر القارات من خلال التوريدات، التوكيلات التجارية، وحلول اللوجستيات المتكاملة.</p>
+            <div id="hero-subtitle-container" style="min-height: 3.5rem; display: flex; align-items: center; justify-content: center; gap: 4px; color: var(--text-secondary); margin-bottom: 40px; max-width: 750px; margin-left: auto; margin-right: auto; font-size: 1.3rem; font-weight: 600;">
+                <span id="typewriter-text" style="color: var(--neon-blue);"></span><span class="typewriter-cursor" style="color: var(--neon-blue); animation: blink 0.7s infinite; font-weight: 900;">|</span>
+            </div>
             <div class="hero-btns">
                 <a href="#services" class="btn-primary" data-i18n="btn_services">خدماتنا</a>
                 <a href="#contact" class="btn-secondary" data-i18n="btn_quote">طلب عرض سعر</a>
@@ -1037,6 +1045,54 @@
                 </div>
                 <div class="glass-panel barki-img-card" onclick="openLightbox('Barki 4.jpeg', 'خروف برقي بلدي مميز - جودة تصدير 4')">
                     <img src="Barki 4.jpeg" alt="خروف برقي">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الصفقات بفلتر -->
+    <section id="deals" class="section" style="background: rgba(255,255,255,0.02); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+        <div class="section-header fade-up">
+            <h2 data-i18n="deals_title">الصفقات والعروض الحصرية</h2>
+            <p data-i18n="deals_subtitle" style="color: var(--text-secondary); margin-top: 10px;">عروض حصرية للبيع وطلبات توريد نبحث لها عن مورد معتمد</p>
+        </div>
+
+        <!-- أزرار التصفية -->
+        <div class="fade-up" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap;">
+            <button class="btn-primary filter-btn active" onclick="filterDeals('all', this)" data-i18n="filter_all">الكل</button>
+            <button class="btn-secondary filter-btn" onclick="filterDeals('sell', this)" data-i18n="filter_offers">صفقات نبيعها</button>
+            <button class="btn-secondary filter-btn" onclick="filterDeals('buy', this)" data-i18n="filter_requests">طلبات صفقات نريد مورد لها</button>
+        </div>
+
+        <!-- شبكة الصفقات -->
+        <div class="deals-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; width: 100%;">
+            <!-- بطاقة صفقة الخرفان البرقي (بيع) -->
+            <div class="glass-panel deal-card sell fade-up" style="padding: 30px; transition: all 0.4s ease; border: 2px solid var(--neon-purple); display: flex; flex-direction: column; justify-content: space-between; min-height: 400px; position: relative;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <span style="background: var(--neon-purple); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;" data-i18n="deal_type_sell">صفقة للبيع</span>
+                        <i class="ri-leaf-line" style="font-size: 2rem; color: var(--neon-purple);"></i>
+                    </div>
+                    <h3 data-i18n="serv_4_title" style="font-size: 1.6rem; margin-bottom: 15px;">الخرفان البرقي</h3>
+                    <p data-i18n="serv_4_desc" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">توريد الخرفان البرقي بجودة تصدير عالمية - حتى 100 رأس فقط - مناسبة للمشاريع الكبرى والمضاحي.</p>
+                </div>
+                <div>
+                    <a href="#barki-deal" class="btn-primary" style="width: 100%; justify-content: center;" data-i18n="btn_details">عرض التفاصيل</a>
+                </div>
+            </div>
+
+            <!-- بطاقة طلب توريد بخور فاخر (طلب) -->
+            <div class="glass-panel deal-card buy fade-up" style="padding: 30px; transition: all 0.4s ease; border: 2px solid var(--neon-blue); display: flex; flex-direction: column; justify-content: space-between; min-height: 400px; position: relative;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <span style="background: var(--neon-blue); color: var(--bg-darker); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;" data-i18n="deal_type_buy">طلب توريد (نريد مورد)</span>
+                        <i class="ri-fire-line" style="font-size: 2rem; color: var(--neon-blue);"></i>
+                    </div>
+                    <h3 data-i18n="incense_card_title" style="font-size: 1.6rem; margin-bottom: 15px;">بخور فاخر من هولندا / بولندا</h3>
+                    <p data-i18n="incense_card_desc" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">شركة سوريانا تعلن عن حاجتها لمورد معتمد في هولندا أو بولندا لتوريد أصناف بخور فاخرة (كريز عود، جيرييرا، بوتسبورم، وسلوداجو) لعميلنا الحالي.</p>
+                </div>
+                <div>
+                    <a href="#incense-deal" class="btn-primary" style="width: 100%; justify-content: center; background: linear-gradient(135deg, var(--neon-blue), #00a8ff); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);" data-i18n="btn_details">عرض التفاصيل</a>
                 </div>
             </div>
         </div>
@@ -1193,7 +1249,7 @@
     </footer>
 
     <!-- أزرار عائمة -->
-    <a href="https://wa.me/201123248831" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp" title="تواصل معنا عبر الواتساب">
+    <a href="https://wa.me/201122324831" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp" title="تواصل معنا عبر الواتساب">
         <i class="ri-whatsapp-line"></i>
     </a>
 
@@ -1440,7 +1496,86 @@
                     }
                 }
             });
+
+            // تحديث تأثير الكتابة باللغة الجديدة
+            restartTypewriter(lang);
         }
+
+        /* =========================================
+           2.ب. منطق تأثير الكتابة (Typewriter Logic)
+           ========================================= */
+        const typewriterPhrases = {
+            ar: [
+                "توريدات عامة بمواصفات وجودة عالمية...",
+                "توكيلات تجارية موثوقة لأفضل الماركات العالمية...",
+                "خدمات استيراد وتصدير متكاملة تربط الأسواق والقارات..."
+            ],
+            en: [
+                "General supplies with global quality and standards...",
+                "Trusted commercial agencies representing top brands...",
+                "Import & export services connecting continents seamlessly..."
+            ],
+            fr: [
+                "Fournitures générales de qualité et normes mondiales...",
+                "Agences commerciales fiables représentant les grandes marques...",
+                "Services d'import-export reliant les continents avec fluidité..."
+            ],
+            de: [
+                "Allgemeine Lieferungen mit weltweiten Qualitätsstandards...",
+                "Zuverlässige Handelsvertretungen für Top-Marken...",
+                "Import- und Exportdienstleistungen, die Kontinente verbinden..."
+            ]
+        };
+
+        let currentTypewriterLang = 'ar';
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingTimeout;
+
+        function runTypewriter() {
+            const textElement = document.getElementById('typewriter-text');
+            if (!textElement) return;
+
+            const phrases = typewriterPhrases[currentTypewriterLang] || typewriterPhrases['ar'];
+            const currentPhrase = phrases[phraseIndex];
+
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let delay = isDeleting ? 30 : 70; // Delete is faster, typing is natural
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                // Pause at the end of the phrase
+                delay = 2500;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                delay = 500; // Pause before typing next phrase
+            }
+
+            typingTimeout = setTimeout(runTypewriter, delay);
+        }
+
+        function restartTypewriter(lang) {
+            clearTimeout(typingTimeout);
+            currentTypewriterLang = lang;
+            phraseIndex = 0;
+            charIndex = 0;
+            isDeleting = false;
+            runTypewriter();
+        }
+
+        // تشغيل التأثير لأول مرة عند تحميل الصفحة باللغة العربية
+        document.addEventListener('DOMContentLoaded', () => {
+            restartTypewriter('ar');
+        });
 
         /* =========================================
            3. مؤشر الماوس (Custom Cursor)
@@ -1615,7 +1750,7 @@
             const whatsappMessage = `مرحباً!\n\nالاسم: ${name}\nالبريد الإلكتروني: ${email}\nنوع الخدمة: ${serviceNames[service]}\nالرسالة: ${message}\n\nسجل تجاري: 158163\nبطاقة ضريبية: 192304185`;
             
             const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappNumber = '201123248831';
+            const whatsappNumber = '201122324831';
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
             
             window.open(whatsappUrl, '_blank');
@@ -1701,6 +1836,38 @@
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('show');
             document.body.style.overflow = 'auto'; // استعادة التمرير
+        }
+
+        /* =========================================
+           8. منطق تصفية الصفقات (Deals Filter Logic)
+           ========================================= */
+        function filterDeals(type, btn) {
+            // تحديث تصميم الأزرار النشطة
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(b => {
+                b.classList.remove('btn-primary', 'active');
+                b.classList.add('btn-secondary');
+            });
+            btn.classList.remove('btn-secondary');
+            btn.classList.add('btn-primary', 'active');
+
+            // تصفية بطاقات الصفقات
+            const cards = document.querySelectorAll('.deal-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    if (type === 'all' || card.classList.contains(type)) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }, 400);
+            });
         }
 
     </script>
