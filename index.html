@@ -9,12 +9,16 @@
     <!-- OG Tags للمشاركة الاجتماعية -->
     <meta property="og:title" content="سوريانا - بوابة التجارة العالمية">
     <meta property="og:description" content="توريدات عامة، توكيلات تجارية، واستيراد وتصدير. رقم السجل التجاري: 158163">
-    <meta property="og:image" content="https://raw.githubusercontent.com/your-repo/souriana-logo.png">
+    <meta property="og:image" content="souriana logo and og-image.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://souriana.com">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="سوريانا - Souriana">
     <meta name="twitter:description" content="خدمات توريد وتصدير عالمية">
+    <meta name="twitter:image" content="souriana logo and og-image.jpg">
+
+    <!-- أيقونة الموقع المصغرة -->
+    <link rel="icon" type="image/jpeg" href="souriana logo and og-image.jpg">
 
     <!-- خطوط جوجل: Cairo للعربية و Poppins للإنجليزية -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -768,6 +772,94 @@
             transform: translateY(0);
         }
 
+        /* معرض صور الخرفان البرقي */
+        .barki-img-card {
+            padding: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .barki-img-card img {
+            transition: var(--transition);
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .barki-img-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
+        }
+        .barki-img-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox Styles */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 7, 16, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content-wrapper {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.4s ease;
+        }
+        .lightbox-modal.show .lightbox-content-wrapper {
+            transform: scale(1);
+        }
+        .lightbox-content-wrapper img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 12px;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(176, 38, 255, 0.4);
+        }
+        #lightbox-caption {
+            margin-top: 15px;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10001;
+        }
+        .lightbox-close:hover {
+            color: var(--neon-blue);
+            transform: scale(1.1);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
@@ -929,14 +1021,33 @@
                 </button>
             </div>
         </div>
+        
+        <!-- معرض صور الخرفان البرقي -->
+        <div class="barki-gallery-section fade-up" style="max-width: 1200px; margin: 60px auto 0 auto; text-align: center; width: 100%;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 30px; background: linear-gradient(to right, #fff, var(--neon-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-i18n="barki_gallery_title">معرض صور الخرفان البرقي</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+                <div class="glass-panel barki-img-card" onclick="openLightbox('Barki 1.jpeg', 'خروف برقي بلدي مميز - جودة تصدير 1')">
+                    <img src="Barki 1.jpeg" alt="خروف برقي">
+                </div>
+                <div class="glass-panel barki-img-card" onclick="openLightbox('Barki 2.jpeg', 'خروف برقي بلدي مميز - جودة تصدير 2')">
+                    <img src="Barki 2.jpeg" alt="خروف برقي">
+                </div>
+                <div class="glass-panel barki-img-card" onclick="openLightbox('Barki 3.jpeg', 'خروف برقي بلدي مميز - جودة تصدير 3')">
+                    <img src="Barki 3.jpeg" alt="خروف برقي">
+                </div>
+                <div class="glass-panel barki-img-card" onclick="openLightbox('Barki 4.jpeg', 'خروف برقي بلدي مميز - جودة تصدير 4')">
+                    <img src="Barki 4.jpeg" alt="خروف برقي">
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- قسم من نحن -->
     <section id="about" class="section">
         <div class="about-container">
             <div class="about-visual fade-up">
-                <!-- صورة توضيحية -->
-                <img src="https://picsum.photos/seed/souriana_office/600/400" alt="Souriana Office">
+                <!-- شعار سوريانا -->
+                <img src="souriana logo and og-image.jpg" alt="Souriana Logo">
                 
                 <!-- بطاقة الهوية القانونية العائمة -->
                 <div class="glass-panel legal-badge">
@@ -1105,6 +1216,15 @@
         </div>
     </div>
 
+    <!-- نافذة تكبير الصور (Lightbox) -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content-wrapper" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="Zoomed Image">
+            <div id="lightbox-caption"></div>
+        </div>
+    </div>
+
     <!-- JavaScript Script -->
     <script>
         /* =========================================
@@ -1149,7 +1269,8 @@
                 lbl_file: "ملف (PDF - اختياري)", lbl_message: "الرسالة",
                 opt_supply: "توريدات عامة", opt_agency: "توكيلات تجارية", opt_import: "استيراد / تصدير", opt_barki: "الخرفان البرقي",
                 footer_about: "شريكك الاستراتيجي في التجارة العالمية. نقدم حلولاً مبتكرة للتوريد والنقل.",
-                follow_us: "تابعنا", chat_welcome: "مرحباً! كيف يمكنني مساعدتك في خدمات التوريد أو الشحن اليوم؟"
+                follow_us: "تابعنا", chat_welcome: "مرحباً! كيف يمكنني مساعدتك في خدمات التوريد أو الشحن اليوم؟",
+                barki_gallery_title: "معرض صور الخرفان البرقي"
             },
             en: {
                 nav_home: "Home", nav_services: "Services", nav_about: "About Us", nav_partners: "Partners", nav_contact: "Contact",
@@ -1189,7 +1310,8 @@
                 lbl_file: "File (PDF - Optional)", lbl_message: "Message",
                 opt_supply: "General Supplies", opt_agency: "Commercial Agencies", opt_import: "Import / Export", opt_barki: "Barki Sheep",
                 footer_about: "Your strategic partner in global trade. Innovative supply and transport solutions.",
-                follow_us: "Follow Us", chat_welcome: "Hello! How can I help you with supply or shipping services today?"
+                follow_us: "Follow Us", chat_welcome: "Hello! How can I help you with supply or shipping services today?",
+                barki_gallery_title: "Barki Sheep Photo Gallery"
             },
             fr: {
                 nav_home: "Accueil", nav_services: "Services", nav_about: "À propos", nav_partners: "Partenaires", nav_contact: "Contact",
@@ -1229,7 +1351,8 @@
                 lbl_file: "Fichier (PDF - Optionnel)", lbl_message: "Message",
                 opt_supply: "Fournitures Générales", opt_agency: "Agences Commerciales", opt_import: "Import / Export", opt_barki: "Moutons Barki",
                 footer_about: "Votre partenaire stratégique. Solutions innovantes d'approvisionnement.",
-                follow_us: "Suivez-nous", chat_welcome: "Bonjour! Comment puis-je vous aider aujourd'hui ?"
+                follow_us: "Suivez-nous", chat_welcome: "Bonjour! Comment puis-je vous aider aujourd'hui ?",
+                barki_gallery_title: "Galerie de Photos des Moutons Barki"
             },
             de: {
                 nav_home: "Startseite", nav_services: "Dienstleistungen", nav_about: "Über Uns", nav_partners: "Partner", nav_contact: "Kontakt",
@@ -1269,7 +1392,8 @@
                 lbl_file: "Datei (PDF - Optional)", lbl_message: "Nachricht",
                 opt_supply: "Allgemeine Lieferungen", opt_agency: "Handelsagenturen", opt_import: "Import / Export", opt_barki: "Barki-Schafe",
                 footer_about: "Ihr strategischer Partner im Welthandel. Innovative Lieferlösungen.",
-                follow_us: "Folgen Sie uns", chat_welcome: "Hallo! Wie kann ich Ihnen heute helfen?"
+                follow_us: "Folgen Sie uns", chat_welcome: "Hallo! Wie kann ich Ihnen heute helfen?",
+                barki_gallery_title: "Barki-Schafe Fotogalerie"
             }
         };
 
@@ -1340,7 +1464,7 @@
         });
 
         // تكبير المؤشر عند التحويم فوق العناصر التفاعلية
-        const interactives = document.querySelectorAll('a, button, select, input, textarea, .service-card');
+        const interactives = document.querySelectorAll('a, button, select, input, textarea, .service-card, .barki-img-card');
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -1557,6 +1681,27 @@
             if(window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
+
+        /* =========================================
+           7. منطق معرض الصور (Lightbox Logic)
+           ========================================= */
+        function openLightbox(imgSrc, captionText) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            
+            lightboxImg.src = imgSrc;
+            lightboxCaption.innerText = captionText;
+            
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto'; // استعادة التمرير
+        }
 
     </script>
 </body>
